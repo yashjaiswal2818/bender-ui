@@ -1,0 +1,16 @@
+{
+  "name": "scatter-prints",
+  "title": "Scatter Prints",
+  "category": "Cursor",
+  "order": 1,
+  "description": "A hero that deals photo prints behind the pointer. Each one flips in from the way you're moving and lands with a little give, and the page drifts toward the colour of the newest photo. Stop and the last few gather into a stack; click it and the top print grows into a full view. On a phone, a tap deals a small fan.",
+  "blurb": "A trail of photo prints behind your cursor. Stop for a second and they gather into a stack.",
+  "note": "move around, then stop for a second",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    "scatter-prints.tsx"
+  ],
+  "demo": "demo.tsx"
+}

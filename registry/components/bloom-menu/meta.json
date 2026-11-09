@@ -1,0 +1,17 @@
+{
+  "name": "bloom-menu",
+  "title": "Bloom Menu",
+  "category": "Navigation",
+  "order": 3,
+  "description": "A navigation bar that grows into its own dropdown. Point at an item and the bar stretches into that item's panel, takes on its tint, and slides the content in from the side you came from. On phones a Menu button grows it into a card you can drill into.",
+  "blurb": "A nav bar that grows into whatever you point at.",
+  "note": "point at Shop, then slide to Journal",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "files": [
+    "bloom-menu.tsx"
+  ],
+  "demo": "demo.tsx"
+}

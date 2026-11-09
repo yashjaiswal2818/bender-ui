@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* The components live outside src/app; make sure their classes are generated. */
+@source "../../registry";
+
+/* The site is light-only. Components installed from elsewhere may ship `dark:` styles;
+   they only apply inside an explicit `.dark` scope, so a visitor's OS setting can't flip them. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Bender UI ───────────────────────────────────────────────────────────
+   White paper, a cool near-black ink, one cobalt for actions and focus, and
+   sky as the colour of the stage things are shown on. Same family as Bender
+   itself (cool ink at hue 250, cobalt at hue 240), kept flat: no gradients,
+   no glass, no glow. */
+
+:root {
+  --bg: oklch(1 0 0);
+  --bg-2: oklch(0.95 0.006 245);
+  --surface: oklch(1 0 0);
+  --tile: oklch(0.974 0.004 245);
+  --ink: oklch(0.26 0.02 250);
+  --ink-2: oklch(0.42 0.016 250);
+  --ink-3: oklch(0.54 0.013 250);
+  --line: oklch(0.925 0.006 245);
+  --line-2: oklch(0.87 0.008 245);
+  --primary: oklch(0.48 0.13 240);
+  --primary-hover: oklch(0.43 0.135 240);
+  --on-primary: oklch(0.995 0 0);
+  --sky: #79bcff;
+  --ok: oklch(0.55 0.14 155);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-tile: var(--tile);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-sky: var(--sky);
+  --color-ok: var(--ok);
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-hanken), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --ease-out: var(--ease-out);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--line-2) transparent;
+    scroll-padding-top: 5.5rem;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--sky) 55%, white);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  /* Tailwind v4 dropped the pointer cursor on buttons; bring it back for everything clickable. */
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  label[for],
+  summary {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Flush sections ──────────────────────────────────────────────────────
+   Sections touch. Between two of them there is a 1px line, or a change of ground, and nothing else:
+   no margin above a section, no spacer element, no padding on a wrapper that adds to the section's own.
+   A section owns one inner padding, --band-y, which is the only room around its content.
+   `.band` is the section (full width, with its line); `.band-in` is its content column.
+   Gaps between things *inside* a section (a card grid, a heading and its text) are ordinary and fine. */
+:root {
+  --band-y: 1.5rem;
+  --gutter: 1rem;
+}
+@media (min-width: 40rem) {
+  :root {
+    --band-y: 2.5rem;
+    --gutter: 1.5rem;
+  }
+}
+@layer components {
+  .band {
+    border-bottom: 1px solid var(--line-2);
+  }
+  .band-in {
+    margin-inline: auto;
+    max-width: 1240px;
+    padding: var(--band-y) var(--gutter);
+  }
+}
+
+/* Headlines: Bricolage Grotesque, tight, with its optical size following the font size. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+/* Entrance: each piece eases up one beat after the one above it. Reduced motion keeps the fade and drops the travel. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.rise {
+  animation: rise 0.8s var(--ease-out) both;
+  animation-delay: var(--d, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation-name: fade; }
+}
+
+/* The "b" mark draws itself in once: the stem, then the bowl. Pure CSS, so it is already in the server HTML. */
+@keyframes logo-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.logo-draw {
+  stroke-dasharray: 1;
+  animation: logo-draw 0.8s var(--ease-out) both;
+  animation-delay: var(--d, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-draw { animation: none; }
+}
+
+/* The typing caret: solid while letters are arriving, blinking while a finished line is held. */
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret-blink {
+  animation: caret 1.05s steps(1, end) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .caret-blink { animation: none; }
+}

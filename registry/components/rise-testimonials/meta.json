@@ -1,0 +1,16 @@
+{
+  "name": "rise-testimonials",
+  "title": "Rise Testimonials",
+  "category": "Testimonials",
+  "order": 6,
+  "description": "Flat-tone cards that lead with a headline. Open one and a white panel rises from its bottom edge with the full story. Drag, glide or use the arrows. The tones share one lightness, so the set sits on any page.",
+  "blurb": "Quotes that open into the story behind them.",
+  "note": "drag the row, or open a card",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    "rise-testimonials.tsx"
+  ],
+  "demo": "demo.tsx"
+}

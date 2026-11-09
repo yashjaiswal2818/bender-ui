@@ -1,0 +1,7 @@
+{
+  "name": "Bender UI",
+  "url": "https://ui.benderai.app",
+  "namespace": "bender",
+  "github": "https://github.com/yashjaiswal2818/bender-ui",
+  "maker": { "name": "Bender", "url": "https://benderai.app" }
+}

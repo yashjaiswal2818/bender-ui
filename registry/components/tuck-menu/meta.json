@@ -1,0 +1,16 @@
+{
+  "name": "tuck-menu",
+  "title": "Tuck Menu",
+  "category": "Navigation",
+  "order": 5,
+  "description": "A full-page menu that waits underneath the page. Open it and the page tucks into a rounded card beside the links. Point at a link and the card previews that page before you pick it. Click the card or press Escape to close.",
+  "blurb": "The whole page tucks away to show the menu that was underneath.",
+  "note": "open the menu, then point at a link",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    "tuck-menu.tsx"
+  ],
+  "demo": "demo.tsx"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "shift-composer",
+  "title": "Shift Composer",
+  "category": "AI",
+  "order": 7,
+  "description": "A chat input that reshapes itself between typing, a drop zone for files and links, and a voice recorder. Drag a file over it and the drop zone opens on its own. Send turns into stop while a reply is on its way, and next steps slide into the toolbar after.",
+  "blurb": "A chat input that reshapes itself for typing, files or your voice.",
+  "note": "try the mic, or drop a file on it",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "files": [
+    "shift-composer.tsx"
+  ],
+  "demo": "demo.tsx"
+}

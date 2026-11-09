@@ -1,0 +1,17 @@
+{
+  "name": "stir-features",
+  "title": "Stir Features",
+  "category": "Feature",
+  "order": 2,
+  "description": "A bento of feature cards where each picture is a small working product. Tickets roll through a stack, people join and wave, a thread types itself out, chips drag and spring home, and teammates resize a chart while you watch. Loops stop off screen and step aside while you're using a card.",
+  "blurb": "Feature cards that are small working products.",
+  "note": "every card moves. drag the chips",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "files": [
+    "stir-features.tsx"
+  ],
+  "demo": "demo.tsx"
+}

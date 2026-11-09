@@ -1,0 +1,16 @@
+{
+  "name": "fold-stack",
+  "title": "Fold Stack",
+  "category": "Animation",
+  "order": 4,
+  "description": "A scrolling window of cards. The one in the middle is open and its neighbours fold into pills above and below. Scroll and the next card unfolds as the current one folds away, tied to the wheel or finger and settling on each card. Click a pill or use the arrow keys to jump.",
+  "blurb": "A window of cards where the one in the middle is open and the rest fold away as you scroll.",
+  "note": "scroll inside the window",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    "fold-stack.tsx"
+  ],
+  "demo": "demo.tsx"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "lift-pricing",
+  "title": "Lift Pricing",
+  "category": "Pricing",
+  "order": 8,
+  "description": "Plans rest as a row of cards under a dark header. Open one and it lifts from the bottom edge to show what it includes. Stacks into an accordion on phones.",
+  "blurb": "Pricing plans that lift open to show what's inside.",
+  "note": "open a plan and watch it lift",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    "lift-pricing.tsx"
+  ],
+  "demo": "demo.tsx"
+}
