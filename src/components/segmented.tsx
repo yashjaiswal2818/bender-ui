@@ -34,7 +34,7 @@ export function Segmented<T extends string>({
                 layoutId={`${uid}-on`}
                 transition={{ type: 'spring', duration: 0.4, bounce: 0.15 }}
                 aria-hidden
-                className="absolute inset-0 rounded-[10px] bg-surface shadow-[0_1px_2px_rgb(17_17_17/0.06),0_2px_8px_-4px_rgb(17_17_17/0.12)]"
+                className="absolute inset-0 rounded-[10px] bg-ink/[0.1] ring-1 ring-line-2 ring-inset"
               />
             )}
             <span className="relative">{o.label}</span>

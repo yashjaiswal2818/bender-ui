@@ -49,7 +49,7 @@ function Card({ item, tabbable }: { item: MarqueeItem; tabbable: boolean }) {
         />
         <span
           aria-hidden
-          className="absolute top-3 right-3 grid size-9 -translate-y-1 scale-90 place-items-center rounded-full bg-white text-[#1a1230] opacity-0 transition-all duration-400 ease-[var(--ease-out)] group-hover/card:translate-y-0 group-hover/card:scale-100 group-hover/card:opacity-100"
+          className="absolute top-3 right-3 grid size-9 -translate-y-1 scale-90 place-items-center rounded-full bg-white text-[#17141a] opacity-0 transition-all duration-400 ease-[var(--ease-out)] group-hover/card:translate-y-0 group-hover/card:scale-100 group-hover/card:opacity-100"
         >
           <ArrowUpRight size={16} />
         </span>
@@ -132,9 +132,8 @@ export function ComponentsMarquee({ items }: { items: MarqueeItem[] }) {
       aria-labelledby="built"
       className="relative overflow-hidden rounded-t-[clamp(24px,3.2vw,48px)] border-t border-white/10 bg-[#100e16] text-white shadow-[0_-40px_90px_-30px_rgba(8,4,24,0.7)]"
     >
-      {/* Soft light, so the dark isn't flat: violet from above, pink from the corner. */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[75%] [background:radial-gradient(60%_60%_at_50%_0%,rgba(160,120,230,0.2),transparent_70%)]" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] [background:radial-gradient(50%_60%_at_15%_100%,rgba(250,189,241,0.1),transparent_70%)]" />
+      {/* The sky's last colour spilling onto the sheet, from the top edge and gone by the first row. A plain gradient, not a glow. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[55%] bg-linear-to-b from-[#ee9a90]/[0.16] to-transparent" />
 
       <div className="relative mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-x-10 gap-y-6 px-5 pt-[clamp(72px,13vh,150px)] pb-[clamp(32px,6vh,64px)] sm:px-8">
         <div>
@@ -160,7 +159,7 @@ export function ComponentsMarquee({ items }: { items: MarqueeItem[] }) {
         </motion.div>
       </div>
 
-      <motion.div {...reveal(0.12)} className="relative flex flex-col gap-3 pb-[clamp(72px,14vh,160px)]">
+      <motion.div {...reveal(0.12)} className="relative flex flex-col gap-3 pb-[clamp(48px,8vh,88px)]">
         <Track items={items} dir={-1} speed={0.62} />
         <Track items={second} dir={1} speed={0.5} />
       </motion.div>

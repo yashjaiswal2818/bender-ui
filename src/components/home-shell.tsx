@@ -12,6 +12,7 @@ import { GithubMark } from './github-mark';
 import { HomeHero } from './home-hero';
 import { HomeScrollProvider, useHomeScroll } from './home-scroll';
 import { Logo } from './logo';
+import { WhatWeDo } from './what-we-do';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /** Aspect ratio of public/hero-bg.webp. Generate yours at 16:9 and nothing here needs to change. */
@@ -343,6 +344,7 @@ function Shell({ items }: { items: MarqueeItem[] }) {
             <HomeHero />
           </div>
           <ComponentsMarquee items={items} />
+          <WhatWeDo items={items} />
         </div>
         <NavBar items={list} />
       </TuckMenu>

@@ -29,7 +29,7 @@ export function CodeBlock({
         <span className="tabular ml-auto shrink-0 text-[12px] text-ink-3">{lines.length} lines</span>
         <CopyButton text={() => codeText(lines)} />
       </div>
-      <pre className={`overflow-auto py-3 font-mono text-[12.5px] leading-[1.7] text-[#393a34] ${open ? 'max-h-[560px]' : ''}`}>
+      <pre className={`overflow-auto py-3 font-mono text-[12.5px] leading-[1.7] text-ink ${open ? 'max-h-[560px]' : ''}`}>
         <code className="grid grid-cols-[auto_1fr]">
           {shown.map((line, i) => (
             <Fragment key={i}>

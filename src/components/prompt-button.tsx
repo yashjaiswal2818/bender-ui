@@ -24,7 +24,7 @@ export function PromptButton(props: PromptInput) {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex h-11 items-center gap-2.5 rounded-[14px] border border-line bg-surface pl-3.5 pr-4 text-[14px] font-medium text-ink shadow-[0_1px_2px_rgb(17_17_17/0.04)] transition-[border-color,box-shadow] duration-300 hover:border-line-2 hover:shadow-[0_1px_2px_rgb(17_17_17/0.04),0_8px_20px_-12px_rgb(17_17_17/0.2)]"
+      className="inline-flex h-11 items-center gap-2.5 rounded-[14px] border border-line bg-surface pl-3.5 pr-4 text-[14px] font-medium text-ink transition-[border-color,background-color] duration-300 hover:border-line-2 hover:bg-tile"
     >
       <span className="relative grid size-4 place-items-center text-primary">
         <AnimatePresence initial={false} mode="popLayout">

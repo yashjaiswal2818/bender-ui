@@ -32,6 +32,36 @@
   color-scheme: light;
 }
 
+/* ── Night ───────────────────────────────────────────────────────────────
+   /components is dark. This scope swaps the tokens, so everything inside (header, rail, pages, footer) follows
+   without a second set of classes. It is deliberately NOT the `.dark` class: that one switches the `dark:` styles
+   inside installable components, and a demo should look exactly as the component ships. Near-neutral ground, the
+   hero's peach and coral for the one live colour, flat, no glow. */
+.night {
+  --bg: oklch(0.155 0.005 270);
+  --bg-2: oklch(0.205 0.006 270);
+  --surface: oklch(0.19 0.006 270);
+  --tile: oklch(0.215 0.007 270);
+  --ink: oklch(0.97 0.003 270);
+  --ink-2: oklch(0.79 0.006 270);
+  --ink-3: oklch(0.64 0.008 270);
+  --line: oklch(1 0 0 / 0.08);
+  --line-2: oklch(1 0 0 / 0.14);
+  --primary: oklch(0.82 0.09 40);
+  --primary-hover: oklch(0.87 0.08 45);
+  --on-primary: oklch(0.2 0.02 30);
+  --ok: oklch(0.8 0.15 155);
+  color-scheme: dark;
+}
+/* The page behind (overscroll, the gap under a short page) takes the night ground too. */
+html:has(.night) {
+  background: oklch(0.155 0.005 270);
+}
+.night ::selection {
+  background: rgb(238 143 134 / 0.45);
+  color: #fff;
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-2: var(--bg-2);

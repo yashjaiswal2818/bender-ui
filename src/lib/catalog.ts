@@ -25,13 +25,13 @@ export const previewSrc = (name: string) => `/previews/${name}.webp`;
 
 export interface ComponentGroup {
   category: string;
-  items: { name: string; title: string }[];
+  items: { name: string; title: string; blurb: string }[];
 }
 
 /** Components by category, in list order. */
-export const GROUPS = COMPONENTS.reduce<ComponentGroup[]>((groups, { category, name, title }) => {
+export const GROUPS = COMPONENTS.reduce<ComponentGroup[]>((groups, { category, name, title, blurb }) => {
   const group = groups.find((g) => g.category === category);
-  if (group) group.items.push({ name, title });
-  else groups.push({ category, items: [{ name, title }] });
+  if (group) group.items.push({ name, title, blurb });
+  else groups.push({ category, items: [{ name, title, blurb }] });
   return groups;
 }, []);

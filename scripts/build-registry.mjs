@@ -10,7 +10,7 @@ import { createHighlighter } from 'shiki';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const site = JSON.parse(fs.readFileSync(path.join(root, 'site.config.json'), 'utf8'));
-const THEME = 'vitesse-light';
+const THEME = 'vitesse-dark';
 
 /** shadcn/ui's `cn`, for projects that don't have it yet. */
 const CN = `import { clsx, type ClassValue } from "clsx";
