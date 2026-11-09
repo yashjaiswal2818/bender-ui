@@ -1,0 +1,15 @@
+{
+  "name": "daylight-toggle",
+  "title": "Daylight Toggle",
+  "category": "Toggle",
+  "order": 9,
+  "description": "A day-and-night switch with a living harbour inside. Drag the brass porthole lens across the bay to shift from noon sun to dusk and moonlit night, with water shimmer, lighthouse beam, and pixel-art dithering.",
+  "blurb": "A living harbour daylight toggle with an animated seaside scene and brass lens.",
+  "note": "drag the brass lens across the bay, or click it",
+  "dependencies": [],
+  "files": [
+    "daylight-toggle.tsx",
+    "harbour.ts"
+  ],
+  "demo": "demo.tsx"
+}
