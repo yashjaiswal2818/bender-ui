@@ -201,3 +201,190 @@ html:has(.night) {
 @media (prefers-reduced-motion: reduce) {
   .caret-blink { animation: none; }
 }
+
+/* ── Page View Transitions ───────────────────────────────────────────────
+   Chrome stays anchored while routes slide directionally or crossfade. */
+::view-transition {
+  pointer-events: none;
+}
+
+.vt-header {
+  view-transition-name: site-header;
+}
+.vt-footer {
+  view-transition-name: site-footer;
+}
+@media (min-width: 64rem) {
+  .vt-rail {
+    view-transition-name: components-rail;
+  }
+}
+@media (max-width: 63.999rem) {
+  .vt-bar {
+    view-transition-name: components-bar;
+  }
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  animation: 220ms cubic-bezier(0.22, 1, 0.36, 1) both vt-fade-out;
+}
+::view-transition-new(site-header) {
+  animation: 220ms cubic-bezier(0.22, 1, 0.36, 1) both vt-fade-in;
+}
+
+::view-transition-group(components-rail),
+::view-transition-group(components-bar) {
+  animation: none;
+  z-index: 90;
+}
+::view-transition-old(components-rail),
+::view-transition-old(components-bar) {
+  display: none;
+}
+::view-transition-new(components-rail),
+::view-transition-new(components-bar) {
+  animation: none;
+}
+
+::view-transition-group(site-footer) {
+  animation: none;
+  z-index: 50;
+}
+::view-transition-old(site-footer) {
+  animation: 180ms ease-out both vt-fade-out;
+}
+::view-transition-new(site-footer) {
+  animation: 260ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both vt-fade-in;
+}
+
+::view-transition-old(root) {
+  animation: 180ms ease-out both vt-fade-out;
+}
+::view-transition-new(root) {
+  animation: 280ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both vt-fade-in;
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+@keyframes vt-move-in {
+  from {
+    transform: translate3d(var(--vt-x, 0px), var(--vt-y, 0px), 0) scale(0.992);
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+@keyframes vt-move-out {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(var(--vt-x, 0px), var(--vt-y, 0px), 0) scale(0.992);
+  }
+}
+
+::view-transition-old(.nav-fade) {
+  --vt-x: 0px;
+  --vt-y: -8px;
+  animation:
+    150ms cubic-bezier(0.32, 0, 0.67, 0) both vt-fade-out,
+    220ms cubic-bezier(0.32, 0, 0.67, 0) both vt-move-out;
+}
+::view-transition-new(.nav-fade) {
+  --vt-x: 0px;
+  --vt-y: 16px;
+  animation:
+    260ms cubic-bezier(0.22, 1, 0.36, 1) 110ms both vt-fade-in,
+    400ms cubic-bezier(0.22, 1, 0.36, 1) both vt-move-in;
+}
+
+::view-transition-old(.nav-forward) {
+  --vt-x: -28px;
+  --vt-y: 0px;
+  animation:
+    140ms cubic-bezier(0.32, 0, 0.67, 0) both vt-fade-out,
+    220ms cubic-bezier(0.32, 0, 0.67, 0) both vt-move-out;
+}
+::view-transition-new(.nav-forward) {
+  --vt-x: 40px;
+  --vt-y: 0px;
+  animation:
+    260ms cubic-bezier(0.22, 1, 0.36, 1) 110ms both vt-fade-in,
+    400ms cubic-bezier(0.22, 1, 0.36, 1) both vt-move-in;
+}
+
+::view-transition-old(.nav-back) {
+  --vt-x: 28px;
+  --vt-y: 0px;
+  animation:
+    140ms cubic-bezier(0.32, 0, 0.67, 0) both vt-fade-out,
+    220ms cubic-bezier(0.32, 0, 0.67, 0) both vt-move-out;
+}
+::view-transition-new(.nav-back) {
+  --vt-x: -40px;
+  --vt-y: 0px;
+  animation:
+    260ms cubic-bezier(0.22, 1, 0.36, 1) 110ms both vt-fade-in,
+    400ms cubic-bezier(0.22, 1, 0.36, 1) both vt-move-in;
+}
+
+::view-transition-old(.nav-down) {
+  --vt-x: 0px;
+  --vt-y: -18px;
+  animation:
+    140ms cubic-bezier(0.32, 0, 0.67, 0) both vt-fade-out,
+    200ms cubic-bezier(0.32, 0, 0.67, 0) both vt-move-out;
+}
+::view-transition-new(.nav-down) {
+  --vt-x: 0px;
+  --vt-y: 24px;
+  animation:
+    250ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both vt-fade-in,
+    380ms cubic-bezier(0.22, 1, 0.36, 1) both vt-move-in;
+}
+
+::view-transition-old(.nav-up) {
+  --vt-x: 0px;
+  --vt-y: 18px;
+  animation:
+    140ms cubic-bezier(0.32, 0, 0.67, 0) both vt-fade-out,
+    200ms cubic-bezier(0.32, 0, 0.67, 0) both vt-move-out;
+}
+::view-transition-new(.nav-up) {
+  --vt-x: 0px;
+  --vt-y: -24px;
+  animation:
+    250ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both vt-fade-in,
+    380ms cubic-bezier(0.22, 1, 0.36, 1) both vt-move-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
