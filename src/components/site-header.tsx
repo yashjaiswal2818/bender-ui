@@ -15,9 +15,9 @@ const LINKS = [
 export function SiteHeader() {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-40 border-b border-line-2 bg-bg/95 backdrop-blur-md">
+    <header className="vt-header sticky top-0 z-40 border-b border-line-2 bg-bg/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-4 px-4 sm:gap-6 sm:px-6">
-        <Link href="/" className="group flex items-center gap-2.5 whitespace-nowrap font-display text-[18px] font-semibold tracking-[-0.03em] text-ink sm:text-[19px]">
+        <Link href="/" transitionTypes={['nav-fade']} className="group flex items-center gap-2.5 whitespace-nowrap font-display text-[18px] font-semibold tracking-[-0.03em] text-ink sm:text-[19px]">
           <Logo size={26} />
           <span>{SITE.name}</span>
         </Link>
@@ -28,6 +28,7 @@ export function SiteHeader() {
               <Link
                 key={l.href}
                 href={l.href}
+                transitionTypes={['nav-fade']}
                 aria-current={on ? 'page' : undefined}
                 className={`rounded-lg px-2.5 py-1.5 text-[14px] transition-colors sm:px-3 sm:py-2 sm:text-[14.5px] ${on ? 'bg-tile font-medium text-ink' : 'text-ink-2 hover:bg-tile hover:text-ink'}`}
               >

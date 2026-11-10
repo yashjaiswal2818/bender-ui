@@ -6,7 +6,7 @@ import { componentHref } from '@/lib/site';
 /** A still of the live demo, its name and one sentence. The page behind it is the live one. */
 export function ComponentCard({ c, wide = false, position, priority = false }: { c: Component; wide?: boolean; position?: string; priority?: boolean }) {
   return (
-    <Link href={componentHref(c.name)} className={`group flex min-w-0 flex-col ${wide ? 'lg:col-span-2' : ''}`}>
+    <Link href={componentHref(c.name)} transitionTypes={['nav-forward']} className={`group flex min-w-0 flex-col ${wide ? 'lg:col-span-2' : ''}`}>
       <div className={`relative aspect-[4/3] overflow-hidden rounded-[22px] bg-tile ring-1 ring-line ${wide ? 'lg:aspect-[2.75/1]' : ''}`}>
         <img
           src={previewSrc(c.name)}

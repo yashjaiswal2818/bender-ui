@@ -98,10 +98,28 @@ export function Sidebar({ groups, total }: { groups: ComponentGroup[]; total: nu
       return next;
     });
 
+  const indexOf = useMemo(() => {
+    const map = new Map<string, number>();
+    let idx = 0;
+    for (const g of groups) for (const it of g.items) map.set(it.name, idx++);
+    return map;
+  }, [groups]);
+  const currentIdx = current ? (indexOf.get(current) ?? -1) : -1;
+
+  const transitionFor = (id: string) => {
+    if (id === 'all') return ['nav-back'];
+    if (currentIdx === -1) return ['nav-forward'];
+    const targetIdx = indexOf.get(id) ?? -1;
+    if (targetIdx > currentIdx) return ['nav-down'];
+    if (targetIdx < currentIdx) return ['nav-up'];
+    return ['nav-fade'];
+  };
+
   /** One row: its label, and the lights. */
   const row = (id: string, href: string, on: boolean, inner: ReactNode, indent = false) => (
     <Link
       href={href}
+      transitionTypes={transitionFor(id)}
       data-row
       aria-current={on ? 'page' : undefined}
       onPointerEnter={() => setHover(id)}
@@ -127,7 +145,7 @@ export function Sidebar({ groups, total }: { groups: ComponentGroup[]; total: nu
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHover(null);
         }}
         onKeyDown={onKeyDown}
-        className="sticky top-[5.5rem] hidden max-h-[calc(100dvh-7rem)] flex-col lg:flex"
+        className="vt-rail sticky top-[5.5rem] hidden max-h-[calc(100dvh-7rem)] flex-col lg:flex"
       >
         <label className="group/filter relative mb-3 block shrink-0">
           <span className="sr-only">Filter components</span>
@@ -277,10 +295,13 @@ export function SidebarBar({ groups, total }: { groups: ComponentGroup[]; total:
     r.scrollTo({ left: r.scrollLeft + b.left - a.left - (a.width - b.width) / 2, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }, [current]);
 
-  const pill = (href: string, on: boolean, label: ReactNode) => (
+  const currentIdx = current ? items.findIndex((it) => it.name === current) : -1;
+
+  const pill = (href: string, on: boolean, label: ReactNode, types: string[]) => (
     <li key={href} className="shrink-0">
       <Link
         href={href}
+        transitionTypes={types}
         aria-current={on ? 'page' : undefined}
         className={`relative flex items-center gap-2 rounded-full px-3.5 py-[7px] text-[13.5px] leading-none whitespace-nowrap transition-colors duration-300 ${on ? 'font-medium text-ink' : 'text-ink-2 hover:text-ink'}`}
       >
@@ -292,7 +313,7 @@ export function SidebarBar({ groups, total }: { groups: ComponentGroup[]; total:
 
   return (
     <MotionConfig reducedMotion="user">
-      <nav aria-label="Components" className="sticky top-16 z-30 -mx-4 border-b border-line bg-bg/85 backdrop-blur-md sm:-mx-6 lg:hidden">
+      <nav aria-label="Components" className="vt-bar sticky top-16 z-30 -mx-4 border-b border-line bg-bg/85 backdrop-blur-md sm:-mx-6 lg:hidden">
         <ul
           ref={row}
           className="flex gap-1 overflow-x-auto px-4 py-2.5 [mask-image:linear-gradient(90deg,transparent,#000_24px,#000_calc(100%-24px),transparent)] [scrollbar-width:none] sm:px-6"
@@ -303,8 +324,16 @@ export function SidebarBar({ groups, total }: { groups: ComponentGroup[]; total:
             <>
               All <span className="tabular ml-1.5 text-[12px] font-normal text-ink-3">{total}</span>
             </>,
+            ['nav-back'],
           )}
-          {items.map(({ name, title }) => pill(componentHref(name), current === name, title))}
+          {items.map(({ name, title }, i) =>
+            pill(
+              componentHref(name),
+              current === name,
+              title,
+              [currentIdx === -1 || i > currentIdx ? 'nav-forward' : 'nav-back'],
+            ),
+          )}
         </ul>
       </nav>
     </MotionConfig>

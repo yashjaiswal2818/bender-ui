@@ -32,6 +32,7 @@ function Card({ item, tabbable }: { item: MarqueeItem; tabbable: boolean }) {
   return (
     <Link
       href={item.href}
+      transitionTypes={['nav-forward']}
       tabIndex={tabbable ? 0 : -1}
       draggable={false}
       className="group/card block w-[clamp(240px,25vw,360px)] outline-none transition-opacity duration-500 group-hover/row:not-hover:opacity-45 focus-visible:[&>div]:ring-2 focus-visible:[&>div]:ring-[#fabdf1]"
@@ -151,6 +152,7 @@ export function ComponentsMarquee({ items }: { items: MarqueeItem[] }) {
         <motion.div {...reveal(0.18)}>
           <Link
             href="/components"
+            transitionTypes={['nav-forward']}
             className="group inline-flex h-12 items-center gap-2 rounded-full bg-white/10 px-6 text-[15px] font-medium text-white ring-1 ring-white/20 backdrop-blur-md transition-colors duration-300 ring-inset hover:bg-white/20"
           >
             See all {n}

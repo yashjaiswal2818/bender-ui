@@ -226,6 +226,7 @@ function NavBar({ items }: { items: Page[] }) {
               <li key={p.label} className="relative">
                 <Link
                   href={p.href}
+                  transitionTypes={['nav-fade']}
                   aria-current={p.label === 'Home' ? 'page' : undefined}
                   onPointerEnter={() => setHover(p.label)}
                   onFocus={() => setHover(p.label)}
@@ -324,7 +325,7 @@ function Shell({ items }: { items: MarqueeItem[] }) {
     e.preventDefault();
     if (href === '/') return;
     clearTimeout(timer.current);
-    timer.current = setTimeout(() => router.push(href), 460);
+    timer.current = setTimeout(() => router.push(href, { transitionTypes: ['nav-fade'] }), 460);
   };
 
   return (

@@ -131,6 +131,7 @@ export function HomeHero() {
           <motion.div {...rise(1.45, 18)} className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/components"
+              transitionTypes={['nav-forward']}
               className="group relative inline-flex h-12 items-center gap-2 overflow-hidden rounded-full bg-white px-6 text-[15px] font-medium text-[#1a1230] shadow-[0_14px_34px_-14px_rgba(20,8,50,0.7)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-white"
             >
               <span
