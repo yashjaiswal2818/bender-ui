@@ -11,6 +11,7 @@ import { Install } from '@/components/install';
 import { ApiTables } from '@/components/api-tables';
 import { PromptButton } from '@/components/prompt-button';
 import { JumpLink } from '@/components/jump-link';
+import { PageTransition } from '@/components/page-transition';
 
 type Props = PageProps<'/components/[name]'>;
 
@@ -38,12 +39,13 @@ export default async function ComponentPage({ params }: Props) {
   const next = COMPONENTS[at + 1];
 
   return (
-    <article>
-      <div className="pb-(--band-y)">
-        <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-2 text-[13.5px] text-ink-3">
-          <Link href="/components" className="transition-colors hover:text-ink">
-            Components
-          </Link>
+    <PageTransition transitionKey={c.name}>
+      <article>
+        <div className="pb-(--band-y)">
+          <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-2 text-[13.5px] text-ink-3">
+            <Link href="/components" transitionTypes={['nav-back']} className="transition-colors hover:text-ink">
+              Components
+            </Link>
           <span aria-hidden>/</span>
           <span className="text-ink-2">{c.category}</span>
         </nav>
@@ -100,6 +102,7 @@ export default async function ComponentPage({ params }: Props) {
         {prev ? (
           <Link
             href={componentHref(prev.name)}
+            transitionTypes={['nav-back']}
             className="group flex flex-col gap-1 rounded-[20px] border border-line bg-surface px-5 py-4 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-line-2"
           >
             <span className="inline-flex items-center gap-1.5 text-[13px] text-ink-3">
@@ -114,6 +117,7 @@ export default async function ComponentPage({ params }: Props) {
         {next && (
           <Link
             href={componentHref(next.name)}
+            transitionTypes={['nav-forward']}
             className="group flex flex-col items-end gap-1 rounded-[20px] border border-line bg-surface px-5 py-4 text-right transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-line-2"
           >
             <span className="inline-flex items-center gap-1.5 text-[13px] text-ink-3">
@@ -124,6 +128,7 @@ export default async function ComponentPage({ params }: Props) {
           </Link>
         )}
       </nav>
-    </article>
+      </article>
+    </PageTransition>
   );
 }

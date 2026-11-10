@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { PageTransition } from '@/components/page-transition';
 import { ShadcnAdd } from '@/components/shadcn-add';
 import { SITE, registryUrl } from '@/lib/site';
 
@@ -24,8 +25,9 @@ const code = 'font-mono text-[13.5px] text-ink';
 export default function DocsPage() {
   const example = registryUrl('bloom-menu');
   return (
-    <div className="mx-auto max-w-[860px] px-4 py-(--band-y) sm:px-6">
-      <header className="pb-(--band-y)">
+    <PageTransition transitionKey="docs">
+      <div className="mx-auto max-w-[860px] px-4 py-(--band-y) sm:px-6">
+        <header className="pb-(--band-y)">
         <h1 className="display rise text-[clamp(2.4rem,4.6vw,3.6rem)]">How installing works</h1>
         <p className="rise mt-3 max-w-[56ch] text-[17px] leading-[1.6] text-ink-2" style={{ '--d': '0.08s' } as React.CSSProperties}>
           Components are plain files you copy into your project. There is no {SITE.name} package, so there is nothing to keep up to date.
@@ -67,7 +69,7 @@ export default function DocsPage() {
 
       <Block id="by-hand" title="By hand">
         <p>
-          Open a component&rsquo;s <Link href="/components" className="text-ink underline decoration-line-2 underline-offset-4 hover:decoration-ink">page</Link>, choose <strong className="font-semibold text-ink">Manual</strong> under Install, install the listed packages and copy the file. Match the import paths to your project&rsquo;s aliases.
+          Open a component&rsquo;s <Link href="/components" transitionTypes={['nav-fade']} className="text-ink underline decoration-line-2 underline-offset-4 hover:decoration-ink">page</Link>, choose <strong className="font-semibold text-ink">Manual</strong> under Install, install the listed packages and copy the file. Match the import paths to your project&rsquo;s aliases.
         </p>
       </Block>
 
@@ -77,6 +79,7 @@ export default function DocsPage() {
           <code className={code}>{'<MotionConfig reducedMotion="user">'}</code> and they fade instead of travel.
         </p>
       </Block>
-    </div>
+      </div>
+    </PageTransition>
   );
 }
