@@ -1,0 +1,17 @@
+{
+  "name": "tally-morph",
+  "title": "Tally Morph",
+  "category": "Data",
+  "order": 10,
+  "description": "One list of figures, two ways to read it: a zero-reflow spatial morph between fixed-order columns and a ranked horizontal ledger. Supports split bars for committed and reserve values, multiple metric lenses, and direct inspection.",
+  "blurb": "A zero-reflow spatial morph between fixed-order columns and a ranked ledger.",
+  "note": "switch between columns and rows, or toggle reserve",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "files": [
+    "tally-morph.tsx"
+  ],
+  "demo": "demo.tsx"
+}
