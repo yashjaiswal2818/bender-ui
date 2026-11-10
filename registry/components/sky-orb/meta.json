@@ -1,0 +1,12 @@
+{
+  "name": "sky-orb",
+  "title": "Sky Orb",
+  "category": "Status",
+  "order": 11,
+  "description": "An ambient presence orb showing the living micro-sky and solar hour of remote teammates. Combines procedural pixel-art dithering, optical glass refraction, and an accessible timecard popover.",
+  "blurb": "A living optical micro-sky porthole and team timezone presence orb.",
+  "note": "pick a time or weather on the side, or hover the orb",
+  "dependencies": ["motion", "lucide-react"],
+  "files": ["sky-orb.tsx", "sky-engine.ts"],
+  "demo": "demo.tsx"
+}
